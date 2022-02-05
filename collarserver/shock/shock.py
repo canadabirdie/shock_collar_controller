@@ -8,11 +8,9 @@ sys.path.append(str(path_root))
 import typing
 
 from time import time, sleep
-from enum import Enum
 
 from mechanical import presser
-from .models import MINPOWER, MAXPOWER, Mode
-from .control import Function
+from .models import MINPOWER, MAXPOWER, Function
 
 func_to_string = {Function.SHOCK: '01', Function.VIBRATE: '10', Function.SOUND: '11'}
 

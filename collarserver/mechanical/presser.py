@@ -11,14 +11,17 @@ SWITCHPIN = 23
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(SWITCHPIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-ser = serial.Serial('SOMETHING GOES HERE', 9600, timeout = 1)
+# May differ depending on your device and things. After you've plugged in your arduino,
+# the command dmesg | grep "tty" should help. Look at the last few lines, should be something
+# like
+# [1036084.518057] cdc_acm 1-1.4:1.0: ttyACM0: USB ACM device
+ser = serial.Serial('/dev/ttyACM0', 9600, timeout = 1)
 ser.reset_input_buffer()
-
 
 def send(bits: str, duration: int):
     end_time = time() + duration
     while time() < end_time:
-        ser.write(bytes(bits))
+        ser.write(bytes(bits, 'ascii'))
         sleep(0.1)
     return
 
