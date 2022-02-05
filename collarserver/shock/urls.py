@@ -5,5 +5,4 @@ from . import control
 
 urlpatterns = [
     path('shock/', control.controller),
-    path('config/', control.config),
 ]
