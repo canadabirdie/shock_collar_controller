@@ -6,17 +6,12 @@ sys.path.append(str(path_root))
 
 from mechanical import presser
 from time import sleep
-from enum import Enum
 
 from django.shortcuts import render
 
 from .forms import ShockForm
 from .shock import activate
-
-class Function(Enum):
-    SHOCK = 1
-    VIBRATE = 2
-    SOUND = 3
+from .models import Function
 
 locked = False
 
@@ -34,7 +29,7 @@ def controller(request):
             activate(mode, data['duration'], data['power'])
             locked = False
     else:
-        form = ShockForm({'mode': Function.SHOCK,
+        form = ShockForm({'mode': int(Function.SHOCK),
                           'power': 0,
                           'duration': 1})
     

@@ -1,11 +1,11 @@
 from .shock import MINPOWER, MAXPOWER
 from django import forms
-from .models import Mode
+from .models import Function
 
 mode_choices = (
-    (int(Mode.SHOCK), "Shock"),
-    (int(Mode.VIBRATION), "Vibration"),
-    (int(Mode.SOUND), "Sound")
+    (int(Function.SHOCK), "Shock"),
+    (int(Function.VIBRATE), "Vibrate"),
+    (int(Function.SOUND), "Sound")
 )
 
 class ShockForm(forms.Form):
