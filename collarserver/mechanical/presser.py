@@ -15,7 +15,7 @@ GPIO.setup(SWITCHPIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 # the command dmesg | grep "tty" should help. Look at the last few lines, should be something
 # like
 # [1036084.518057] cdc_acm 1-1.4:1.0: ttyACM0: USB ACM device
-ser = serial.Serial('/dev/ttyACM0', 9600, timeout = 1)
+ser = serial.Serial('/dev/ttyACM1', 9600, timeout = 1)
 ser.reset_input_buffer()
 
 def send(bits: str, duration: int):
