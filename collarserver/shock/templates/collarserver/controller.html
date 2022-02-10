@@ -2,9 +2,21 @@
 <html>
     <head>
         <style>
-body {
-  font-size: 25px;
-}    
+.shockButton {
+  display: block;
+  width: 100%;
+  height: 60px;
+  background-color: #04AA6D; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+}
+
+.btn-group {
+  width: 100%;
+}
 
 .btn-group button {
   background-color: #04AA6D; /* Green background */
@@ -13,6 +25,8 @@ body {
   padding: 10px 24px; /* Some padding */
   cursor: pointer; /* Pointer/hand icon */
   float: left; /* Float the buttons side by side */
+  height: 100%;
+  font-size: 15vh;
 }
 
 .btn-group button:not(:last-child) {
@@ -27,8 +41,24 @@ body {
 }
 
 /* Add a background color on hover */
-.btn-group button:hover {
+.btn-group button:hover, .shockButton:hover {
   background-color: #3e8e41;
+}
+
+label {
+  font-size: 5vh
+}
+
+input {
+  height: 5vh;
+  font-size: 5vh;
+  width: 5vw;
+}
+
+select {
+  height: 5vh;
+  font-size: 5vh;
+  width: 9vw;
 }
 
 </style>
@@ -44,72 +74,46 @@ body {
         <form action="/shock/" method="post">
           {% csrf_token %}
             <tr>
-    <th><label for="id_duration">Duration:</label></th>
+        <th><label for="id_duration">Duration:</label></th>
     <td>
-      
       <input type="number" name="duration" value="1" min="0" max="10" step="any" required id="id_duration">
-      
-      
+      <div class="btn-group">
+            <button type="button" style="width:50%" onclick="addToDuration(-1)">-1s</button>
+            <button type="button" style="width:50%" onclick="addToDuration(1)">+1s</button>
+            </div>
     </td>
   </tr>
-
   <tr>
     <th><label for="id_power">Power:</label></th>
     <td>
-      
       <input type="number" name="power" value="0" min="0" max="99" required id="id_power">
-      
-      
+      <div class="btn-group">
+            <button type="button" style="width:25%" onclick="addToPower(-5)">-5</button>
+            <button type="button" style="width:25%" onclick="addToPower(-1)">-1</button>
+            <button type="button" style="width:25%" onclick="addToPower(1)">+1</button>
+            <button type="button" style="width:25%" onclick="addToPower(5)">+5</button>
+            </div>
     </td>
   </tr>
-
   <tr>
     <th><label for="id_mode">Mode:</label></th>
     <td>
-      
       <select name="mode" id="id_mode">
   <option value="1" selected>Shock</option>
-
   <option value="2">Vibrate</option>
-
   <option value="3">Sound</option>
-
 </select>
-      
-      
-        
-      
+      <div class = "btn-group">
+            <button type="button" style="width:33.333%" onclick="setMode(1)">Shock</button>
+            <button type="button" style="width:33.333%" onclick="setMode(2)">Vibrate</button>
+            <button type="button" style="width:33.333%" onclick="setMode(3)">Sound</button>
+            </div>
     </td>
   </tr>
-            <input type="submit" value="Shock!">
+  <div class="btn-group">
+  <button type="submit" class="shockButton">Activate</button>
+  </div>
         </form>
-        <div class="btn-group" style="width:100%">
-            <button style="width:50%" onclick="addToDuration(-1)">
-            -1s
-            </button>
-            <button style="width:50%" onclick="addToDuration(1)">
-            +1s
-            </button>
-            </div>
-            <div class="btn-group" style="width:100%">
-            <button style="width:25%" onclick="addToPower(-5)">
-            -5
-            </button>
-            <button style="width:25%" onclick="addToPower(-1)">
-            -1
-            </button>
-            <button style="width:25%" onclick="addToPower(1)">
-            +1
-            </button>
-            <button style="width:25%" onclick="addToPower(5)">
-            +5
-            </button>
-            </div>
-            <div class = "btn-group" style = "width:100%">
-            <button style="width:33.3%" onclick="setMode(1)">Shock</button>
-            <button style="width:33.3%" onclick="setMode(2)">Vibrate</button>
-            <button style="width:33.3%" onclick="setMode(3)">Sound</button>
-            </div>
     </body>
     <script type="text/javascript">
     function addToPower(i) {
