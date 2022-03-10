@@ -1,3 +1,6 @@
+# Handles the conversion from what we want to do to the actual bits that need to be sent
+# over the air
+
 # Some module managing nonsense
 from bisect import bisect
 from pathlib import Path
@@ -33,5 +36,10 @@ def get_bits(channel: int, function: Function, intensity: int) -> str:
 def activate(mode: Function, duration: int, power: int):
     # Get the bit representation
     bits = get_bits(0, mode, power)
-    presser.send(bits, duration)
-    return
+    
+    end_time = time() + duration
+    while time() < end_time:
+        presser.send(bits)
+        sleep(0.1)
+    # Send empty command to stop current command
+    presser.send(get_bits(0, Function.SHOCK, 0))

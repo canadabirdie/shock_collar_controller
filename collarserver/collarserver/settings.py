@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-6kh6eraq_&c@q9%bnm8^7aizrv!@!rjv!q()j5zl=e#(q8xom3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', '192.168.2.225', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ["www.canadabirdie.ca", "canadabirdie.ca", '192.168.2.225', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = "accounts/login/"

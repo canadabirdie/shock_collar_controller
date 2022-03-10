@@ -1,3 +1,5 @@
+# Display, request handling and authentication
+
 # Some module managing nonsense
 from pathlib import Path
 import sys
@@ -8,6 +10,7 @@ from mechanical import presser
 from time import sleep
 
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from .forms import ShockForm
 from .shock import activate
@@ -15,6 +18,7 @@ from .models import Function
 
 locked = False
 
+@login_required
 def controller(request):
     
     if request.method == 'POST':
