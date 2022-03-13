@@ -61,3 +61,6 @@ def api_shock(request):
             locked = True
             activate(mode, data['duration'], data['power'])
             locked = False
+            response = HttpResponse("")
+            response.status_code = 200
+            return response
