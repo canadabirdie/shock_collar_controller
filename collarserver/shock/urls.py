@@ -7,6 +7,7 @@ from . import control
 
 urlpatterns = [
     path('', control.controller),
+    path('api/', control.api_shock),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/login/', auth_views.LoginView.as_view()),
 ]
